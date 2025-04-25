@@ -288,3 +288,44 @@ defineConfigWithVueTs(
   },
 })
 ```
+
+## husky + commitLint git 提交规范工作流
+
+采用[约定式提交规范](https://www.conventionalcommits.org/zh-hans/v1.0.0/#%e7%ba%a6%e5%ae%9a%e5%bc%8f%e6%8f%90%e4%ba%a4%e8%a7%84%e8%8c%83)，让代码的历史记录更加清晰。
+
+安装依赖：
+
+```bash
+pnpm add commitlint @commitlint/config-conventional commitizen cz-conventional-changelog -Dw
+```
+
+增加`monorepo/package.json`的脚本命令：
+
+```json
+{
+  "scripts": {
+    "cz": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
+```
+
+验证环境是否可用：
+
+先`git add .`，在 `pnpm cz` 或者 git-cz，会看到如下信息：
+
+```bash
+cz-cli@4.3.1, cz-conventional-changelog@3.3.0
+
+? Select the type of change that you're committing: (Use arrow keys)
+❯ feat:     A new feature
+  fix:      A bug fix
+  docs:     Documentation only changes
+  style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+  refactor: A code change that neither fixes a bug nor adds a feature
+  perf:     A code change that improves performance
+```
