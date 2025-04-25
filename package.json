@@ -2,12 +2,15 @@
   "name": "vue3-ui",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
+    "prepare": "husky",
     "dev:ui": "pnpm --filter=vue3-ui run dev",
     "build:ui": "pnpm --filter=vue3-ui run build",
     "test:unit:ui": "pnpm --filter=vue3-ui run test:unit:q",
-    "test:e2e:ui": "pnpm --filter=vue3-ui run test:e2e"
+    "test:e2e:ui": "pnpm --filter=vue3-ui run test:e2e",
+    "lint-staged:ui": "pnpm --filter=vue3-ui run lint-staged",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "pinia": "~3.0.1",
@@ -30,8 +33,10 @@
     "eslint-plugin-oxlint": "~0.16.0",
     "eslint-plugin-playwright": "~2.2.0",
     "eslint-plugin-vue": "~10.0.0",
+    "husky": "~9.1.7",
     "jiti": "~2.4.2",
     "jsdom": "~26.0.0",
+    "lint-staged": "~15.5.1",
     "npm-run-all2": "~7.0.2",
     "oxlint": "~0.16.0",
     "prettier": "3.5.3",
@@ -40,5 +45,18 @@
     "vite-plugin-vue-devtools": "~7.7.2",
     "vitest": "~3.1.1",
     "vue-tsc": "~2.2.8"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "oxlint --fix",
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,scss}": [
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write"
+    ]
   }
 }

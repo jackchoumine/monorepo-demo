@@ -1,0 +1,12 @@
+echo "🐶 Running linters on staged files."
+
+pnpm lint-staged # 使用 pnpm 执行 lint-staged
+# 检査 lint-staged 命令的退出码
+if [$? -ne 0]; then
+   echo "❌ Linters found errors. commit aborted." >&2  # 输出到 stderr
+   exit 1 # 非零退出码，阻止提交
+fi
+
+echo "✅ Linter spassed!"
+
+exit 0 # 零退出码，允许提交

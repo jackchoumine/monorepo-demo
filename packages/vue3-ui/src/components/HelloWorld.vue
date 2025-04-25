@@ -1,12 +1,19 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+<!--
+ * @Author      : ZhouQiJun
+ * @Date        : 2025-04-25 23:00:07
+ * @LastEditors : ZhouQiJun
+ * @LastEditTime: 2025-04-26 00:46:38
+ * @Description :
+-->
+<script setup>
+const props = defineProps({
+  msg: { type: String, default: '' },
+})
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="green">{{ props.msg }}</h1>
     <h3>
       You’ve successfully created a project with
       <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +

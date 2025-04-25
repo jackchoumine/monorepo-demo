@@ -2,7 +2,9 @@
 
 monorepo 学习
 
-## 使用 create-vue 初始化一个项目
+## 创建 monorepo 环境
+
+### 使用 create-vue 初始化一个项目
 
 为何使用它呢？
 
@@ -78,7 +80,7 @@ save-prefix=~
 registry=https://registry.npmmirror.com
 ```
 
-### 创建 pnpm 创建项目
+### 搭建 pnpm workspace 环境
 
 在目录创建`pnpm-workspace.yaml`:
 
@@ -188,3 +190,92 @@ pnpm i -r # -r 表示递归安装
 依次执行以上脚本，验证环境是否可用。
 
 一切都正确了，就说明环境搭建好了。
+
+## 搭建 husky + lint-stage 代码质量检查工作量流
+
+在`monorepo`安装依赖：
+
+```bash
+pnpm add lint-staged husky -Dw # w 表示安装到根录目
+# 此时 lint-staged 的版本是 15.5.1 husky 的版本为 9.1.7
+```
+
+执行`pnpx husky init`，会在根目录创建`.husky`目录，用于存放 git hook。
+
+`monorepo/package.json` 增加脚本：
+
+```json
+{
+  "type": "commonjs",
+  "scripts": {
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": ["oxlint --fix", "eslint --fix", "prettier --write"],
+    "*.{css,scss}": ["prettier --write"],
+    "*.md": ["prettier --write"]
+  }
+}
+```
+
+修改`monorepo/.prettierrc.json` 改为 `.prettierrc.cjs`:
+
+```js
+module.exports = {
+  semi: false,
+  singleQuote: true,
+  jsxSingleQuote: true,
+  printWidth: 90,
+  arrowParens: 'always',
+  vueIndentScriptAndStyle: false,
+}
+```
+
+验证 lint 是否就绪：`pnpm -F=vue3-ui lint`，验证 prettier `pnpm -F=vue3-ui format`，没报错，就说明环境就行了。
+
+修改`.husky/pre-commit`:
+
+```bash
+echo "🐶 Running linters on staged files."
+
+pnpm lint-staged # 使用 pnpm 执行 lint-staged
+# 检査 lint-staged 命令的退出码
+if [$? -ne 0]; then
+   echo "❌ Linters found errors. commit aborted." >&2  # 输出到 stderr
+   exit 1 # 非零退出码，阻止提交
+fi
+
+echo "✅ Linters passed!"
+
+exit 0 # 零退出码，允许提交
+```
+
+修改`packages/vue3-ui/components/HelloWorld.vue` 的 script 为：
+
+```html
+<script setup>
+  const props = defineProps({
+    msg: { type: String, default: '' },
+  })
+</script>
+```
+
+看到错误：
+
+```bash
+
+✖ eslint --fix:
+
+/Users/jack/front/monorepo-demo/packages/vue3-ui/src/components/HelloWorld.vue
+  8:1  error  The 'lang' attribute of '<script>' is missing  vue/block-lang
+
+✖ 1 problem (1 error, 0 warnings)
+```
+
+说明 husky + lint-staged 环境可用。
+
+下面来消除这个错误，在 `monorepo/eslint-config.ts` 中增加规则：
+
+```ts
+
+```
