@@ -277,5 +277,14 @@ exit 0 # 零退出码，允许提交
 下面来消除这个错误，在 `monorepo/eslint-config.ts` 中增加规则：
 
 ```ts
-
+defineConfigWithVueTs(
+{
+  skipFormatting,
+  // 在最后添加规则
+  {
+    rules: {
+      'vue/block-lang': 0,
+    },
+  },
+})
 ```
