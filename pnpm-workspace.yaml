@@ -1,0 +1,7 @@
+packages:
+  # 子包目录
+  - 'packages/*'
+  # 放置测试项目
+  - 'examples/**'
+  # exclude packages that are inside test directories
+  - '!**/test/**'
