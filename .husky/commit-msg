@@ -1,1 +1,3 @@
-npx --no-install commitlint --edit "$1"
+echo "🐶 Running commitlint on staged files."
+
+npx  commitlint --edit "$1"

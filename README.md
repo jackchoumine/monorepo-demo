@@ -296,7 +296,8 @@ defineConfigWithVueTs(
 安装依赖：
 
 ```bash
-pnpm add commitlint @commitlint/config-conventional commitizen cz-conventional-changelog -Dw
+pnpm add -g commitizen # 全局安装
+pnpm add commitlint @commitlint/config-conventional cz-conventional-changelog -Dw
 ```
 
 增加`monorepo/package.json`的脚本命令：
@@ -329,3 +330,23 @@ cz-cli@4.3.1, cz-conventional-changelog@3.3.0
   refactor: A code change that neither fixes a bug nor adds a feature
   perf:     A code change that improves performance
 ```
+
+提交一次不规范的 commit，验证`.husky/commit-msg` 是否可用：
+
+```bash
+git commit -m '验证 .husky/commit-msg 是否可用'
+```
+
+看到类似的错误：
+
+```bash
+✖   subject may not be empty [subject-empty]
+✖   type may not be empty [type-empty]
+
+✖   found 2 problems, 0 warnings
+ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+
+husky - commit-msg script failed (code 1)
+```
+
+说明可用了。
