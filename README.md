@@ -520,6 +520,93 @@ pnpm cz
 
 则表明表情提交可用了，🎁！
 
+#### 优化表情包
+
+chore 和 refactor 的表情包，只显示黑白，似乎不那么好看，替换一个有彩色，且渲染良好的。
+
+[查看各种表情 - Complete list of github markdown emoji markup](https://gist.github.com/rxaviers/7360908)
+
+[gitemoji](https://gitmoji.dev/)
+
+修改后的`.cz-config.js`:
+
+```js
+/*
+ * @Author      : ZhouQiJun
+ * @Date        : 2025-04-26 14:34:34
+ * @LastEditors : ZhouQiJun
+ * @LastEditTime: 2025-04-26 15:08:23
+ * @Description :
+ */
+module.exports = {
+  types: [
+    {
+      value: ':gift: feat',
+      name: '🎁 feat:     新功能',
+    },
+    {
+      value: ':bug: fix',
+      name: '🐛 fix:      修复bug',
+    },
+    {
+      value: ':recycle: refactor',
+      name: '♻️ refactor: 重构',
+    },
+    {
+      value: ':books: docs',
+      name: '📚  docs:     文档变更',
+    },
+    {
+      value: ':package: build',
+      name: '📦️ build:    打包',
+    },
+    {
+      value: ':rocket: perf',
+      name: '🚀 perf:     性能优化',
+    },
+    {
+      value: ':tada: release',
+      name: '🎉 release:  发布正式版',
+    },
+    {
+      value: ':art: style',
+      name: '🎨 style:    代码的样式美化',
+    },
+    {
+      value: ':white_check_mark: test',
+      name: '✅ test:     测试',
+    },
+    {
+      value: ':rewind: revert',
+      name: '⏪️ revert:   回退',
+    },
+    {
+      value: ':wrench: chore',
+      name: '🔧 chore:    构建/工程依赖/工具',
+    },
+    {
+      value: ':construction_worker: ci',
+      name: '👷 ci:       CI related changes',
+    },
+  ],
+  messages: {
+    type: '请选择提交类型(必填)',
+    customScope: '请输入文档修改范围(可选)',
+    subject: '请简要描述提交(必填)',
+    body: '请输入详细描述(可选)',
+    breaking: '列出任何BREAKING CHANGES(可选)',
+    footer: '请输入要关闭的issue(可选)',
+    confirmCommit: '确定提交此说明吗？',
+  },
+  allowCustomScopes: true,
+  // 跳过问题
+  skipQuestions: ['body', 'footer'],
+  subjectLimit: 72,
+}
+```
+
+> refactor 的表情渲染得不好，因为没有找到更好的，就不换了。
+
 ## 参考
 
 [Git commit校验工具commitlint的配置与使用](https://blog.csdn.net/Jackson_Wen/article/details/127921063)

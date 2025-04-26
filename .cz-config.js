@@ -2,7 +2,7 @@
  * @Author      : ZhouQiJun
  * @Date        : 2025-04-26 14:34:34
  * @LastEditors : ZhouQiJun
- * @LastEditTime: 2025-04-26 14:40:31
+ * @LastEditTime: 2025-04-26 15:08:23
  * @Description :
  */
 module.exports = {
@@ -16,28 +16,28 @@ module.exports = {
       name: '🐛 fix:      修复bug',
     },
     {
+      value: ':recycle: refactor',
+      name: '♻️ refactor: 重构',
+    },
+    {
+      value: ':books: docs',
+      name: '📚  docs:     文档变更',
+    },
+    {
       value: ':package: build',
       name: '📦️ build:    打包',
     },
     {
-      value: ':zap: perf',
-      name: '⚡️ perf:     性能优化',
+      value: ':rocket: perf',
+      name: '🚀 perf:     性能优化',
     },
     {
       value: ':tada: release',
       name: '🎉 release:  发布正式版',
     },
     {
-      value: ':lipstick: style',
-      name: '💄 style:    代码的样式美化',
-    },
-    {
-      value: ':recycle: refactor',
-      name: '♻️  refactor: 重构',
-    },
-    {
-      value: ':books: docs',
-      name: '📚  docs:     文档变更',
+      value: ':art: style',
+      name: '🎨 style:    代码的样式美化',
     },
     {
       value: ':white_check_mark: test',
@@ -49,7 +49,7 @@ module.exports = {
     },
     {
       value: ':wrench: chore',
-      name: '⚙️ chore:    构建/工程依赖/工具',
+      name: '🔧 chore:    构建/工程依赖/工具',
     },
     {
       value: ':construction_worker: ci',
