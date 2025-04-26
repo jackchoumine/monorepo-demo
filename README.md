@@ -730,10 +730,14 @@ pnpm -F=vue3-ui add utils --workspace
 
 正常显示 3。
 
+## 使用 changesets 管理版本
+
+似乎没有这样的需求，不配置了。
+
+<!--  TODO -->
+
 ## 参考
 
 [Git commit校验工具commitlint的配置与使用](https://blog.csdn.net/Jackson_Wen/article/details/127921063)
 
 [[保姆级] Vite+Vue 3 终极代码规范：ESLint+Prettier+Husky 全覆盖，拯救强迫症！](https://mp.weixin.qq.com/s/J6HlSPyjlk56dFj5uHan9Q)
-
-feat!: send an email to the customer when a product is shipped
