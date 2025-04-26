@@ -607,6 +607,26 @@ module.exports = {
 
 > refactor 的表情渲染得不好，因为没有找到更好的，就不换了。
 
+## 根据 git commit 生成日志记录
+
+安装依赖：
+
+```bash
+pnpm add conventional-changelog conventional-changelog-cli -Dw
+```
+
+配置命令：
+
+```json
+{
+  "scripts": {
+    "changelog": "conventional-changelog -p cz-config.js -i CHANGELOG.md -s -r 0"
+  }
+}
+```
+
+验证可用性：`pnpm changelog`，在根目录下生成 `CHANGELOG.md`，就表明可用了。
+
 ## 参考
 
 [Git commit校验工具commitlint的配置与使用](https://blog.csdn.net/Jackson_Wen/article/details/127921063)

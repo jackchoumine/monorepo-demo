@@ -1,0 +1,12 @@
+## 0.0.0 (2025-04-26)
+
+- :recycle: refactor: 替换更加好看的表情 ([489ec8a](https://github.com/jackchoumine/monorepo-demo/commit/489ec8a))
+- :recycle: refactor(cz-conifg.js): 记录commitlint 支持表情包配置 ([ebac0c2](https://github.com/jackchoumine/monorepo-demo/commit/ebac0c2))
+- :wrench: chore(commitlint): 提交type 支持表情包 ([48398de](https://github.com/jackchoumine/monorepo-demo/commit/48398de))
+- Initial commit ([8f1d9cc](https://github.com/jackchoumine/monorepo-demo/commit/8f1d9cc))
+- chore: 测试 husky + lint-staged 环境是否可用 ([378c8cd](https://github.com/jackchoumine/monorepo-demo/commit/378c8cd))
+- chore: 增加规则 ([ed54c89](https://github.com/jackchoumine/monorepo-demo/commit/ed54c89))
+- chore: prettier 配置增加类型提示 ([ab8f4b2](https://github.com/jackchoumine/monorepo-demo/commit/ab8f4b2))
+- chore(.husky/commit-msg): 验证 commit-msg 是否可用 ([79712ee](https://github.com/jackchoumine/monorepo-demo/commit/79712ee))
+- chore(commitlint-config): commitlint 配置可用性验证 ([a24b65f](https://github.com/jackchoumine/monorepo-demo/commit/a24b65f))
+- init: 初始化 monorepo ([897ac41](https://github.com/jackchoumine/monorepo-demo/commit/897ac41))
