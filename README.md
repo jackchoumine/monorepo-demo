@@ -672,3 +672,5 @@ pnpm add conventional-changelog conventional-changelog-cli -Dw
 [Git commit校验工具commitlint的配置与使用](https://blog.csdn.net/Jackson_Wen/article/details/127921063)
 
 [[保姆级] Vite+Vue 3 终极代码规范：ESLint+Prettier+Husky 全覆盖，拯救强迫症！](https://mp.weixin.qq.com/s/J6HlSPyjlk56dFj5uHan9Q)
+
+feat!: send an email to the customer when a product is shipped
