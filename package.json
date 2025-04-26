@@ -12,9 +12,7 @@
     "test:unit": "run-p test:unit:ui test:unit:utils",
     "test:e2e:ui": "pnpm --filter=vue3-ui run test:e2e",
     "lint-staged:ui": "pnpm --filter=vue3-ui run lint-staged",
-    "lint-staged": "lint-staged",
-    "cz": "cz-customizable",
-    "changelog": "conventional-changelog -p cz-config.js -i CHANGELOG.md -s -r 0"
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "pinia": "~3.0.1",
@@ -22,7 +20,6 @@
     "vue-router": "~4.5.0"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "~19.8.0",
     "@playwright/test": "~1.51.1",
     "@tsconfig/node22": "~22.0.1",
     "@types/jsdom": "~21.1.7",
@@ -34,20 +31,10 @@
     "@vue/eslint-config-typescript": "~14.5.0",
     "@vue/test-utils": "~2.4.6",
     "@vue/tsconfig": "~0.7.0",
-    "commitizen": "~4.3.1",
-    "commitlint": "~19.8.0",
-    "commitlint-config-cz": "~0.13.3",
-    "commitlint-config-git-commit-emoji": "~1.0.0",
-    "conventional-changelog": "~6.0.0",
-    "conventional-changelog-cli": "~5.0.0",
-    "conventional-commits-parser": "~6.1.0",
-    "cz-conventional-changelog": "~3.3.0",
-    "cz-customizable": "~7.4.0",
     "eslint": "~9.22.0",
     "eslint-plugin-oxlint": "~0.16.0",
     "eslint-plugin-playwright": "~2.2.0",
     "eslint-plugin-vue": "~10.0.0",
-    "gitlog": "~5.1.0",
     "husky": "~9.1.7",
     "jiti": "~2.4.2",
     "jsdom": "~26.0.0",
