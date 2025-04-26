@@ -2,7 +2,7 @@
  * @Author      : ZhouQiJun
  * @Date        : 2025-04-26 14:34:34
  * @LastEditors : ZhouQiJun
- * @LastEditTime: 2025-04-27 00:33:11
+ * @LastEditTime: 2025-04-27 00:55:28
  * @Description :
  */
 module.exports = {
@@ -77,6 +77,6 @@ module.exports = {
   },
   allowCustomScopes: true,
   // 跳过问题
-  skipQuestions: ['body', 'footer'],
+  skipQuestions: ['scope', 'body', 'footer'],
   subjectLimit: 72,
 }
