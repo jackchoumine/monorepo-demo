@@ -293,12 +293,27 @@ defineConfigWithVueTs(
 
 采用[约定式提交规范](https://www.conventionalcommits.org/zh-hans/v1.0.0/#%e7%ba%a6%e5%ae%9a%e5%bc%8f%e6%8f%90%e4%ba%a4%e8%a7%84%e8%8c%83)，让代码的历史记录更加清晰。
 
+```text
+feat(button): add rounded corners
+^    ^       ^
+|    |       |-- 描述
+|    |-- 作用域（可选）
+|-- 类型（feat/fix/docs/style/等）
+```
+
 安装依赖：
 
 ```bash
 pnpm add -g commitizen # 全局安装
 pnpm add commitlint @commitlint/config-conventional cz-conventional-changelog -Dw
 ```
+
+| 包名                              | 作用                                                                                                        | 适用场景                                       |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `commitizen`                      | 提供交互式命令行工具（`git cz`），帮助用户生成符合约定式提交（Conventional Commits）规范的 commit message。 | 替代 `git commit`，规范化提交消息。            |
+| `commitlint`                      | 校验 commit message 是否符合指定格式（如 Conventional Commits），不合法时阻止提交。                         | 在 Git 钩子（如 `commit-msg`）中强制规范提交。 |
+| `@commitlint/config-conventional` | `commitlint` 的**预设配置**，基于 [Conventional Commits](https://www.conventionalcommits.org/) 规范。       | 搭配 `commitlint` 使用，提供开箱即用的规则。   |
+| `cz-conventional-changelog`       | `commitizen` 的**适配器**，提供符合 Conventional Commits 的交互式提交模板。                                 | 搭配 `commitizen` 使用，生成标准化提交消息。   |
 
 增加`monorepo/package.json`的脚本命令：
 
@@ -350,3 +365,38 @@ husky - commit-msg script failed (code 1)
 ```
 
 说明可用了。
+
+> 禁用 husky
+
+某一次提交想要禁用husky，可以添加参数--no-verify:
+
+```bash
+git commit --no-verify -m "xxx"
+```
+
+### 让提交信息支持中文和表情
+
+因为commitizen只支持英文，如果我想要支持中文指令和emoji，就必须安装可自定义的cz适配器了。
+
+> 在交互式提交界面中，每个提交类型（如 feat、fix）前会显示对应的 emoji 图标，增强可读性和趣味性。
+
+> 常用的表情：
+
+| type     | emoji                 | code                    |
+| :------- | :-------------------- | :---------------------- |
+| feat     | :gift:                | `:gift:`                |
+| fix      | :bug:                 | `:bug:`                 |
+| docs     | :books:               | `:books:`               |
+| style    | :gem:                 | `:gem:`                 |
+| refactor | :recycle:             | `:recycle:`             |
+| perf     | :rocket:              | `:rocket:`              |
+| test     | :white_check_mark:    | `:white_check_mark:`    |
+| build    | :package:             | `:package:`             |
+| ci       | :construction_worker: | `:construction_worker:` |
+| chore    | :wrench:              | `:wrench:`              |
+
+## 参考
+
+[Git commit校验工具commitlint的配置与使用](https://blog.csdn.net/Jackson_Wen/article/details/127921063)
+
+[[保姆级] Vite+Vue 3 终极代码规范：ESLint+Prettier+Husky 全覆盖，拯救强迫症！](https://mp.weixin.qq.com/s/J6HlSPyjlk56dFj5uHan9Q)
