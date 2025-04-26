@@ -395,6 +395,131 @@ git commit --no-verify -m "xxx"
 | ci       | :construction_worker: | `:construction_worker:` |
 | chore    | :wrench:              | `:wrench:`              |
 
+安装依赖：
+
+```bash
+pnpm i commitlint-config-cz  cz-customizable commitlint-config-git-commit-emoji -Dw
+```
+
+根目录下创建`.cz-config.js`:
+
+```js
+/*
+ * @Author      : ZhouQiJun
+ * @Date        : 2025-04-26 14:34:34
+ * @LastEditors : ZhouQiJun
+ * @LastEditTime: 2025-04-26 14:40:31
+ * @Description :
+ */
+module.exports = {
+  types: [
+    {
+      value: ':gift: feat',
+      name: '🎁 feat:     新功能',
+    },
+    {
+      value: ':bug: fix',
+      name: '🐛 fix:      修复bug',
+    },
+    {
+      value: ':package: build',
+      name: '📦️ build:    打包',
+    },
+    {
+      value: ':zap: perf',
+      name: '⚡️ perf:     性能优化',
+    },
+    {
+      value: ':tada: release',
+      name: '🎉 release:  发布正式版',
+    },
+    {
+      value: ':lipstick: style',
+      name: '💄 style:    代码的样式美化',
+    },
+    {
+      value: ':recycle: refactor',
+      name: '♻️  refactor: 重构',
+    },
+    {
+      value: ':books: docs',
+      name: '📚  docs:     文档变更',
+    },
+    {
+      value: ':white_check_mark: test',
+      name: '✅ test:     测试',
+    },
+    {
+      value: ':rewind: revert',
+      name: '⏪️ revert:   回退',
+    },
+    {
+      value: ':wrench: chore',
+      name: '⚙️ chore:    构建/工程依赖/工具',
+    },
+    {
+      value: ':construction_worker: ci',
+      name: '👷 ci:       CI related changes',
+    },
+  ],
+  messages: {
+    type: '请选择提交类型(必填)',
+    customScope: '请输入文档修改范围(可选)',
+    subject: '请简要描述提交(必填)',
+    body: '请输入详细描述(可选)',
+    breaking: '列出任何BREAKING CHANGES(可选)',
+    footer: '请输入要关闭的issue(可选)',
+    confirmCommit: '确定提交此说明吗？',
+  },
+  allowCustomScopes: true,
+  // 跳过问题
+  skipQuestions: ['body', 'footer'],
+  subjectLimit: 72,
+}
+```
+
+修改 commitlint.config.js
+
+移除 extends中 原来的 `@commitlint/config-conventional`，添加`git-commit-emoji`、`cz`:
+
+```ts
+module.exports = {
+  //extends: ['@commitlint/config-conventional'],
+  extends: ['git-commit-emoji', 'cz'],
+}
+```
+
+修改 `monorepo/package.json` 中提交命令：
+
+```json
+{
+  "scripts": {
+    "cz": "cz-customizable"
+  }
+}
+```
+
+验证是否可用：
+
+```bash
+pnpm cz
+```
+
+看到类似这种输出：
+
+```bash
+? 请选择提交类型(必填) (Use arrow keys)
+❯ 🎁 feat:     新功能
+  🐛 fix:      修复bug
+  📦️ build:    打包
+  ⚡️ perf:     性能优化
+  🎉 release:  发布正式版
+  💄 style:    代码的样式美化
+  ♻️  refactor: 重构
+```
+
+则表明表情提交可用了，🎁！
+
 ## 参考
 
 [Git commit校验工具commitlint的配置与使用](https://blog.csdn.net/Jackson_Wen/article/details/127921063)
