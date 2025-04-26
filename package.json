@@ -12,7 +12,8 @@
     "test:unit": "run-p test:unit:ui test:unit:utils",
     "test:e2e:ui": "pnpm --filter=vue3-ui run test:e2e",
     "lint-staged:ui": "pnpm --filter=vue3-ui run lint-staged",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "changelog": "conventional-changelog -p cz-config.js -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
     "pinia": "~3.0.1",
@@ -35,6 +36,8 @@
     "@vue/tsconfig": "~0.7.0",
     "commitizen": "~4.3.1",
     "commitlint-config-cz": "~0.13.3",
+    "conventional-changelog": "~6.0.0",
+    "conventional-changelog-cli": "~5.0.0",
     "cz-conventional-changelog": "~3.3.0",
     "cz-customizable": "~7.4.0",
     "eslint": "~9.22.0",
