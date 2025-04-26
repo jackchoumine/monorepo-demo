@@ -667,6 +667,69 @@ pnpm add conventional-changelog conventional-changelog-cli -Dw
 
 验证可用性：`pnpm changelog`，在根目录下生成 `CHANGELOG.md`，就表明可用了。
 
+## 增加一个子包 utils
+
+在 packages 中创建 `utils/package.json`:
+
+```json
+{
+  "name": "utils",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "build": "tsdown ./src",
+    "test": "vitest",
+    "test:q": "vitest --watch=false"
+  },
+  "devDependencies": {
+    "typescript": "~5.7.2"
+  }
+}
+```
+
+monorepo/package.json 新增脚本：
+
+```json
+{
+  "test:unit:utils": "pnpm --filter=utils run test:q",
+  "test:unit": "run-p test:unit:ui test:unit:utils"
+}
+```
+
+安装 tsdown 打包 utils:
+
+```bash
+pnpm add tsdown -Dw
+```
+
+vue3-ui 依赖 utils，把 utils 安装到 vue3-ui:
+
+```bash
+pnpm -F=vue3-ui add utils --workspace
+```
+
+在 vue3-ui 中使用 utils:
+
+```html
+<script setup lang="ts">
+  import TheWelcome from '../components/TheWelcome.vue'
+  import { sum } from 'utils'
+  const total = sum(1, 2)
+</script>
+
+<template>
+  <main>
+    <p>{{ total }}</p>
+    <TheWelcome />
+  </main>
+</template>
+```
+
+正常显示 3。
+
 ## 参考
 
 [Git commit校验工具commitlint的配置与使用](https://blog.csdn.net/Jackson_Wen/article/details/127921063)
