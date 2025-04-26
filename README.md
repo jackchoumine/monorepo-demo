@@ -193,6 +193,46 @@ pnpm i -r # -r 表示递归安装
 
 ## 搭建 husky + lint-stage 代码质量检查工作量流
 
+### husky 是什么？
+
+[husky](https://typicode.github.io/husky/zh/) 的读音为 /ˈhʌski/，一个现代化的 git 钩子管理工具，在代码提交或推送前自动执行校验脚本，确保代码符合项目规范。
+
+工作流
+
+![husky-run.png](https://cdn.jsdelivr.net/npm/zqj-pics/code-style/husky-run.png)
+
+> 典型的是一个场景：
+
+- git 钩子简化管理：
+
+  - 提供简单的方式添加和管理 git 钩子
+  - 支持所有 Git 钩子（pre-commit、commit-msg、pre-push 等）
+
+- 质量保障自动化：
+
+  - 在提交前自动运行代码检查（如 ESLint）
+  - 在推送前运行测试
+  - 校验提交信息格式（配合 Commitlint）
+  - 支持 npm/Yarn/pnpm 脚本
+
+### lint-staged 是什么？
+
+lint-staged 是一个专门用于在 Git 暂存区（staged files） 运行代码检查（Lint）和格式化（Format）的工具，通常与 Husky 的 Git 钩子（如 pre-commit）结合使用，确保只有即将提交的代码符合规范，而不是全量检查整个项目。
+
+主要功能
+
+1. 仅检查 Git 暂存区的文档（git add 添加的文档），提高检查速度。
+
+2. 支持多种 Linter（ESLint、Prettier、Stylelint 等）。
+
+3. 自动修复可修复的问题（如 ESLint --fix 或 Prettier 格式化）。
+
+4. 与 Husky 无缝集成，在提交前强制执行代码规范。
+
+> 只检查修改过的文档，而不是整个项目，大幅提高速度。
+
+### 搭建 husky + lint-staged 执行环境
+
 在`monorepo`安装依赖：
 
 ```bash
