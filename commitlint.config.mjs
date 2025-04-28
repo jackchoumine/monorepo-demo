@@ -40,7 +40,7 @@ const types = [
 const typesList = types.map((item) => item.value)
 
 export default defineConfig({
-  //rules: czConfig.rules,
+  extends: ['@commitlint/config-conventional'],
   rules: {
     'type-enum': [
       // 允许的提交类型
