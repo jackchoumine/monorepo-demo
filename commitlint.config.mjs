@@ -3,7 +3,15 @@ import { defineConfig } from 'cz-git'
 import czConfig from './cz.config.mjs'
 
 export default defineConfig({
-  rules: czConfig.rules,
+  //rules: czConfig.rules,
+  rules: {
+    'type-enum': [
+      // 允许的提交类型
+      2,
+      'always',
+      ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'chore', 'revert'],
+    ],
+  },
   prompt: {
     alias: { fd: 'docs: fix typos' },
     messages: {
