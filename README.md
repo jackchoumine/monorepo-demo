@@ -580,7 +580,7 @@ export default defineConfig({
 
 就说明 cz-git 配置成功了！
 
-> 不配置 cz 脚本命令，直接使用 `cz`或者`git-cz`，也是可以的。
+> 不配置 cz 脚本命令，直接使用 `cz` 或者 `git-cz`，也是可以的。
 
 ### husky + commitlint 检查提交信息是否符合规范
 
