@@ -14,7 +14,10 @@
     "lint-staged:ui": "pnpm --filter=vue3-ui run lint-staged",
     "lint-staged": "lint-staged",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "cz": "git-cz"
+    "cz": "git-cz",
+    "changeset": "changeset",
+    "pv": "changeset version",
+    "pu": "changeset publish"
   },
   "dependencies": {
     "pinia": "~3.0.1",
