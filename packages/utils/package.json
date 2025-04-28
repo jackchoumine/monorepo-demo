@@ -9,5 +9,8 @@
     "build": "tsdown ./src",
     "test": "vitest",
     "test:q": "vitest --watch=false"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
