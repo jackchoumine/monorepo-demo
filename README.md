@@ -580,17 +580,13 @@ export default defineConfig({
 
 就说明 cz-git 配置成功了！
 
+> 不配置 cz 脚本命令，直接使用 `cz`或者`git-cz`，也是可以的。
+
 ### husky + commitlint 检查提交信息是否符合规范
 
 有了提交规范，如何保证团队成员都按照规范提交呢？这就是 commitlint 发挥的作用。
 
 commitlint 结合 git commit-msg 钩子用于检查提交信息是否符合规范。
-
-安装 @commitlint/cli
-
-```bash
-pnpm add commitlint -Dw # commitlint 是 @commitlint/cli 别名，也可以安装 @commitlint/cli
-```
 
 创建`.husky/commit-msg` 钩子：
 
@@ -633,7 +629,7 @@ git commit --no-verify -m "xxx"
 安装依赖：
 
 ```bash
-pnpm add conventional-changelog conventional-changelog-cli -Dw
+pnpm add conventional-changelog-cli -Dw
 ```
 
 配置命令：
@@ -641,7 +637,7 @@ pnpm add conventional-changelog conventional-changelog-cli -Dw
 ```json
 {
   "scripts": {
-    "changelog": "conventional-changelog -p cz-config.js -i CHANGELOG.md -s -r 0"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   }
 }
 ```
