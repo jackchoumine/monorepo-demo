@@ -1,4 +1,4 @@
-## 0.0.37 (2025-04-28)
+# [1.0.0](https://github.com/jackchoumine/monorepo-demo/compare/670af91f111ee6360a9eb57731aab9e58ea8b6a8...v1.0.0) (2025-04-28)
 
 
 * :gift: feat: 破坏性更新 ([670af91](https://github.com/jackchoumine/monorepo-demo/commit/670af91f111ee6360a9eb57731aab9e58ea8b6a8))
@@ -19,11 +19,13 @@
 * **custom:** 配置自定义交互信息 ([e52abc9](https://github.com/jackchoumine/monorepo-demo/commit/e52abc91ef065751ce6b688e27d8fb29c36ea11a))
 * **custom:** 日志生成 ([183747e](https://github.com/jackchoumine/monorepo-demo/commit/183747eee2ad08b96200888b42801d1eab562110))
 * **cz-git:** 🎁 cz-git 适配器配置 ([419a993](https://github.com/jackchoumine/monorepo-demo/commit/419a993abe8a5cccbc97f1b02f6b4fd4caa20221))
+* **ec-ui:** 🎁 破坏性更新 ([9989673](https://github.com/jackchoumine/monorepo-demo/commit/9989673dd67c0e558eb89043dd8c679710041a77))
 * **lint-config:** 🎁 更新笔记 ([8bfb6c5](https://github.com/jackchoumine/monorepo-demo/commit/8bfb6c56d9e20813c9251a7217906d139ce005c3))
 
 
 ### BREAKING CHANGES
 
+* **ec-ui:** 测试破坏性更新
 * 这是一个破坏性更新
 
 
