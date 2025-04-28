@@ -2,7 +2,7 @@
  * @Author      : ZhouQiJun
  * @Date        : 2025-04-28 20:41:33
  * @LastEditors : ZhouQiJun
- * @LastEditTime: 2025-04-28 20:43:17
+ * @LastEditTime: 2025-04-28 21:19:54
  * @Description : vite 配置
  */
 import { fileURLToPath, URL } from 'node:url'
@@ -29,7 +29,7 @@ export default defineConfig({
     },
     rollupOptions: {
       // 确保外部化处理不想打包进库的依赖
-      external: ['vue'],
+      external: ['vue', '@ecbase/utils'],
       output: {
         globals: {
           vue: 'Vue', // 在 UMD 格式中为外部依赖提供全局变量

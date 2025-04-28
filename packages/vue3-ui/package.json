@@ -23,17 +23,16 @@
     "format": "prettier --write src/"
   },
   "peerDependencies": {
+    "@ecbase/utils": "workspace:*",
     "pinia": "~3.0.1",
     "vue": "~3.5.13",
     "vue-router": "~4.5.0"
   },
   "devDependencies": {
+    "@ecbase/utils": "workspace:*",
     "pinia": "~3.0.1",
     "vue": "~3.5.13",
     "vue-router": "~4.5.0"
-  },
-  "dependencies": {
-    "@ecbase/utils": "workspace:*"
   },
   "publishConfig": {
     "access": "public"
