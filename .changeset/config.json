@@ -1,0 +1,18 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  //"changelog": [
+  //  "@changesets/changelog-github",
+  //  {
+  //    // 改为你的 github 仓储
+  //    "repo": "jackchoumine/monorepo-demo"
+  //  }
+  //],
+  "commit": false,
+  "fixed": [],
+  "linked": [[""]],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}
