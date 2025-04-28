@@ -33,7 +33,7 @@
     "@vue/test-utils": "~2.4.6",
     "@vue/tsconfig": "~0.7.0",
     "commitizen": "~4.3.1",
-    "cz-conventional-changelog": "~3.3.0",
+    "cz-git": "~1.11.1",
     "eslint": "~9.22.0",
     "eslint-plugin-oxlint": "~0.16.0",
     "eslint-plugin-playwright": "~2.2.0",
@@ -50,7 +50,8 @@
     "vite": "~6.2.4",
     "vite-plugin-vue-devtools": "~7.7.2",
     "vitest": "~3.1.1",
-    "vue-tsc": "~2.2.8"
+    "vue-tsc": "~2.2.8",
+    "cz": "git-cz"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": [
@@ -67,7 +68,8 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-git",
+      "czConfig": "./cz.config.mjs"
     }
   }
 }

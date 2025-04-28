@@ -451,7 +451,24 @@ commitizen 类似 eslint，适配器类似自定义的 eslint 规则扩展。
 
 commitizen 是一个总管，负责发起提交信息生成。
 
-适配器 是实现具体规范的插件，它告诉 commitizen 应该怎么写这个信息。
+适配器是实现具体规范的插件，它告诉 commitizen 应该怎么写这个信息。
+
+### 添加 cz-git 适配器
+
+[cz-git](https://cz-git.qbb.sh/zh/) 是一个强大的高度自定义的适配器，交互更加友好，支持表情，支持中文，被`element-plus`、`nx`等知名项目采用。
+
+安装适配器:
+
+```bash
+pnpm rm cz-conventional-changelog -w # 移除刚才安装的适配器
+pnpm add cz-git -Dw
+```
+
+修改 package.json 中的适配器：
+
+```json
+{}
+```
 
 ### husky + commitlint 检查提交信息是否符合规范
 
