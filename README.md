@@ -331,7 +331,7 @@ defineConfigWithVueTs(
 
 ## husky + commitLint git 提交规范工作流
 
-采用[约定式提交规范](https://www.conventionalcommits.org/zh-hans/v1.0.0/#%e7%ba%a6%e5%ae%9a%e5%bc%8f%e6%8f%90%e4%ba%a4%e8%a7%84%e8%8c%83)，让代码的历史记录更加清晰。
+采用[约定式提交规范](https://www.conventionalcommits.org/zh-hans/v1.0.0/#%e7%ba%a6%e5%ae%9a%e5%bc%8f%e6%8f%90%e4%ba%a4%e8%a7%84%e8%8c%83)，让代码的历史记录更加清晰，同时可根据提交历史自动生成变更日志。
 
 ```text
 feat(button): add rounded corners
@@ -340,6 +340,16 @@ feat(button): add rounded corners
 |    |-- 作用域（可选）
 |-- 类型（feat/fix/docs/style/等）
 ```
+
+看看两个知名库的提交：
+
+![element-plus-github.png](https://cdn.jsdelivr.net/npm/zqj-pics/git/element-plus-github.png)
+
+> element-plus 一眼能看出每个提交的修改范围，修改类型，是功能还是修复bug。
+
+![lodash.png](https://cdn.jsdelivr.net/npm/zqj-pics/git/lodash.png)
+
+> lodash 的提交信息就凌乱得多，无法一眼看出来提交的改动。
 
 安装依赖：
 
@@ -738,6 +748,6 @@ pnpm -F=vue3-ui add utils --workspace
 
 ## 参考
 
-[Git commit校验工具commitlint的配置与使用](https://blog.csdn.net/Jackson_Wen/article/details/127921063)
+[Conventional Changelog 生态探索](https://zhuanlan.zhihu.com/p/392303778)
 
 [[保姆级] Vite+Vue 3 终极代码规范：ESLint+Prettier+Husky 全覆盖，拯救强迫症！](https://mp.weixin.qq.com/s/J6HlSPyjlk56dFj5uHan9Q)
