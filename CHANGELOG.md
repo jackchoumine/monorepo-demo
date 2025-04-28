@@ -1,3 +1,19 @@
+## [1.0.1](https://github.com/jackchoumine/monorepo-demo/compare/v1.0.0...v1.0.1) (2025-04-28)
+
+
+### Features
+
+* **ec-ui:** 🎁 新增 EcButton 按钮组件 ([408aa6e](https://github.com/jackchoumine/monorepo-demo/commit/408aa6e75d3b8e21ae922ca41ada5d332f4a53b6))
+* **ec-ui:** 🎁 新增 TOdoItem 组件 ([9bc502c](https://github.com/jackchoumine/monorepo-demo/commit/9bc502cbc93aec0663b2197f7c6d20ab95309f3c))
+* **ec-utils:** 🎁 新增 printName 函数 ([224c6a1](https://github.com/jackchoumine/monorepo-demo/commit/224c6a1982b88685ef031265824bbf82d0dea78f))
+
+
+### Reverts
+
+* **lint-config:** ⏪️ 环境changset的日志格式 ([156a6c7](https://github.com/jackchoumine/monorepo-demo/commit/156a6c7723ba6846b6eebcea546815d2513815fa))
+
+
+
 # [1.0.0](https://github.com/jackchoumine/monorepo-demo/compare/670af91f111ee6360a9eb57731aab9e58ea8b6a8...v1.0.0) (2025-04-28)
 
 
