@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "husky",
     "dev:ui": "pnpm --filter=vue3-ui run dev",
-    "build:ui": "pnpm --filter=vue3-ui run build",
+    "build": "pnpm --filter=@ecbase/* run build",
     "test:unit:ui": "pnpm --filter=vue3-ui run test:unit:q",
     "test:unit:utils": "pnpm --filter=utils run test:q",
     "test:unit": "run-p test:unit:ui test:unit:utils",

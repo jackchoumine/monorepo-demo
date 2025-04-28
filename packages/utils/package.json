@@ -1,7 +1,7 @@
 {
-  "name": "utils",
-  "private": true,
+  "name": "@ecbase/utils",
   "version": "0.0.1",
+  "private": false,
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -9,8 +9,5 @@
     "build": "tsdown ./src",
     "test": "vitest",
     "test:q": "vitest --watch=false"
-  },
-  "devDependencies": {
-    "typescript": "~5.7.2"
   }
 }
