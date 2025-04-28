@@ -72,7 +72,7 @@ export default defineConfig({
     rules: {
       'type-enum': [2, 'always', typesList],
       //'subject-max-length': [100, 'always'], // 标题最长100字符
-      'scope-case': [0, 'always', 'kebab-case'], // scope 需短横线命名
+      'scope-case': [2, 'always', 'kebab-case'], // scope 需短横线命名
     },
     // 跳过问题（如跳过 body）
     skipQuestions: ['body'],
