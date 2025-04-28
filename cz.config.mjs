@@ -2,7 +2,7 @@
  * @Author      : ZhouQiJun
  * @Date        : 2025-04-28 16:25:12
  * @LastEditors : ZhouQiJun
- * @LastEditTime: 2025-04-28 19:45:33
+ * @LastEditTime: 2025-04-28 19:48:57
  * @Description : cz-git 适配器
  */
 import { definePrompt } from 'cz-git'
@@ -68,7 +68,7 @@ export default definePrompt({
   // 提交消息校验规则（与 commitlint 共享）
   rules: {
     'type-enum': [2, 'always', typesList],
-    'subject-max-length': [100, 'always'], // 标题最长100字符
+    //'subject-max-length': [100, 'always'], // 标题最长100字符
     'scope-case': [0, 'always', 'kebab-case'], // scope 需短横线命名
   },
   // 跳过问题（如跳过 body）
