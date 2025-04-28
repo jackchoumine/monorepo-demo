@@ -13,7 +13,8 @@
     "test:e2e:ui": "pnpm --filter=vue3-ui run test:e2e",
     "lint-staged:ui": "pnpm --filter=vue3-ui run lint-staged",
     "lint-staged": "lint-staged",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "cz": "git-cz"
   },
   "dependencies": {
     "pinia": "~3.0.1",
@@ -50,8 +51,7 @@
     "vite": "~6.2.4",
     "vite-plugin-vue-devtools": "~7.7.2",
     "vitest": "~3.1.1",
-    "vue-tsc": "~2.2.8",
-    "cz": "git-cz"
+    "vue-tsc": "~2.2.8"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": [
@@ -68,7 +68,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-git"
+      "path": "node_modules/cz-git"
     }
   }
 }
