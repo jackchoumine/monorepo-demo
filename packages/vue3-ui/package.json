@@ -31,5 +31,8 @@
   },
   "dependencies": {
     "@ecbase/utils": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
