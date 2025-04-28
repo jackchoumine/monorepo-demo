@@ -1,5 +1,11 @@
 # @ecbase/vue3-ui
 
+## 1.1.0
+
+### Minor Changes
+
+- e9ce6a0: 增加组件
+
 ## 1.0.0
 
 ### Patch Changes
