@@ -1,6 +1,43 @@
 import { defineConfig } from 'cz-git'
 
-import czConfig from './cz.config.mjs'
+const types = [
+  { value: 'feat', name: 'feat:     🎁新增功能', emoji: '🎁' },
+  { value: 'fix', name: 'fix:      🐛Bug修复', emoji: '🐛' },
+  { value: 'docs', name: 'docs:     📚文档变更', emoji: '📚' },
+  { value: 'test', name: 'test:     ✅添加测试或修改已有测试', emoji: '✅' },
+  {
+    value: 'refactor',
+    name: 'refactor:      ♻️代码重构(不包括 bug 修复、功能新增，不改动对外 api，仅改动内部代码组织方式、变量命名等)',
+    emoji: '♻️',
+  },
+  {
+    value: 'format',
+    name: 'format:     🎨代码格式美化',
+    emoji: '🎨',
+  },
+  {
+    value: 'revert',
+    name: 'revert:     ⏪️版本回退(老代码还原)',
+    emoji: '⏪️',
+  },
+  {
+    value: 'perf',
+    name: 'perf:     🚀性能优化(不包括 bug 修复、功能新增，不改动对外 api，仅让代码更高效)',
+    emoji: '🚀',
+  },
+  {
+    value: 'build',
+    name: 'build:     📦️构建流程、外部依赖变更(如升级 npm 包、修改 vite 配置等)',
+    emoji: '📦️',
+  },
+  {
+    value: 'chore',
+    name: 'chore:     🔨辅助工具和库的变更(不影响源文件、测试用例，比如修改 eslint、tsconfig 配置等)',
+    emoji: '🔨',
+  },
+]
+
+const typesList = types.map((item) => item.value)
 
 export default defineConfig({
   //rules: czConfig.rules,
@@ -13,51 +50,31 @@ export default defineConfig({
     ],
   },
   prompt: {
-    alias: { fd: 'docs: fix typos' },
-    messages: {
-      type: "Select the type of change that you're committing:",
-      scope: 'Denote the SCOPE of this change (optional):',
-      customScope: 'Denote the SCOPE of this change:',
-      subject: 'Write a SHORT, IMPERATIVE tense description of the change:\n',
-      body: 'Provide a LONGER description of the change (optional). Use "|" to break new line:\n',
-      breaking: 'List any BREAKING CHANGES (optional). Use "|" to break new line:\n',
-      footerPrefixSelect:
-        'Select the ISSUES type of changeList by this change (optional):',
-      customFooterPrefix: 'Input ISSUES prefix:',
-      footer: 'List any ISSUES by this change. E.g.: #31, #34:\n',
-      generatingByAI: 'Generating your AI commit subject...',
-      generatedSelectByAI: 'Select suitable subject by AI generated:',
-      confirmCommit: 'Are you sure you want to proceed with the commit above?',
-    },
-    types: czConfig.types,
+    // 启用 Emoji 支持
     useEmoji: true,
-    emojiAlign: 'center',
-    useAI: false,
-    aiNumber: 1,
-    themeColorCode: '',
-    scopes: [],
+    messages: {
+      type: '选择提交类型或者输入关键字搜索类型:',
+      scope: '选择影响范围:',
+      customScope: '输入自定义范围:',
+      subject: '提交标题:',
+      body: '详细描述 (可选):',
+      breaking: '破坏性变更说明 (可选):',
+      issues: '关联 Issues (如 #123):',
+    },
+    allowBreakingChanges: ['feat', 'fix'], // 仅 feat/fix 允许填写 breaking change
+    // 自定义提交类型
+    types,
+    // 预设作用域选项
+    scopes: ['ec-ui', 'ec-utils', 'lint-config'],
+    // 允许自定义作用域（输入非预设值时提示）
     allowCustomScopes: true,
-    allowEmptyScopes: true,
-    customScopesAlign: 'bottom',
-    customScopesAlias: 'custom',
-    emptyScopesAlias: 'empty',
-    upperCaseSubject: false,
-    markBreakingChangeMode: false,
-    allowBreakingChanges: ['feat', 'fix'],
-    breaklineNumber: 100,
-    breaklineChar: '|',
-    skipQuestions: [],
-    issuePrefixes: [{ value: 'closed', name: 'closed:   ISSUES has been processed' }],
-    customIssuePrefixAlign: 'top',
-    emptyIssuePrefixAlias: 'skip',
-    customIssuePrefixAlias: 'custom',
-    allowCustomIssuePrefix: true,
-    allowEmptyIssuePrefix: true,
-    confirmColorize: true,
-    scopeOverrides: undefined,
-    defaultBody: '',
-    defaultIssues: '',
-    defaultScope: '',
-    defaultSubject: '',
+    // 提交消息校验规则（与 commitlint 共享）
+    rules: {
+      'type-enum': [2, 'always', typesList],
+      //'subject-max-length': [100, 'always'], // 标题最长100字符
+      'scope-case': [0, 'always', 'kebab-case'], // scope 需短横线命名
+    },
+    // 跳过问题（如跳过 body）
+    skipQuestions: ['body'],
   },
 })
