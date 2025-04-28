@@ -46,7 +46,7 @@ export default defineConfig({
       // 允许的提交类型
       2,
       'always',
-      ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'chore', 'revert'],
+      typesList,
     ],
   },
   prompt: {
