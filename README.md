@@ -443,7 +443,7 @@ formatting, missing semi-colons, etc)
 
 ### 什么是 commitizen 的适配器？
 
-commitizen 内置一些了规则，不同的团队有不同的规则偏好，为了保持扩展和开发，提供了适配器来扩展。
+commitizen 是一个git commit 命令行工具，内置一些了规则，不同的团队有不同的规则偏好，为了保持扩展和开发，提供了适配器来扩展。
 
 commitizen 类似 eslint，适配器类似自定义的 eslint 规则扩展。
 
@@ -495,6 +495,24 @@ pnpm add cz-git -Dw
 
 ### husky + commitlint 检查提交信息是否符合规范
 
+有了提交规范，如何保证团队成员都按照规范提交呢？这就是 commitlint 发挥的作用。
+
+commitlint 结合 git commit-msg 钩子用于检查提交信息是否符合规范。
+
+安装 @commitlint/cli
+
+```bash
+pnpm add commitlint -Dw # commitlint 是 @commitlint/cli 别名，也可以安装 @commitlint/cli
+```
+
+创建`.husky/commit-msg` 钩子：
+
+```bash
+echo "🐶 Running commitlint on staged files."
+
+npx  commitlint --edit "$1"
+```
+
 提交一次不规范的 commit，验证`.husky/commit-msg` 是否可用：
 
 ```bash
@@ -522,239 +540,6 @@ husky - commit-msg script failed (code 1)
 ```bash
 git commit --no-verify -m "xxx"
 ```
-
-### 让提交信息支持中文和表情
-
-因为commitizen只支持英文，如果我想要支持中文指令和emoji，就必须安装可自定义的cz适配器了。
-
-> 在交互式提交界面中，每个提交类型（如 feat、fix）前会显示对应的 emoji 图标，增强可读性和趣味性。
-
-> 常用的表情：
-
-| type     | emoji                 | code                    |
-| :------- | :-------------------- | :---------------------- |
-| feat     | :gift:                | `:gift:`                |
-| fix      | :bug:                 | `:bug:`                 |
-| docs     | :books:               | `:books:`               |
-| style    | :gem:                 | `:gem:`                 |
-| refactor | :recycle:             | `:recycle:`             |
-| perf     | :rocket:              | `:rocket:`              |
-| test     | :white_check_mark:    | `:white_check_mark:`    |
-| build    | :package:             | `:package:`             |
-| ci       | :construction_worker: | `:construction_worker:` |
-| chore    | :wrench:              | `:wrench:`              |
-
-安装依赖：
-
-```bash
-pnpm i commitlint-config-cz  cz-customizable commitlint-config-git-commit-emoji -Dw
-```
-
-根目录下创建`.cz-config.js`:
-
-```js
-/*
- * @Author      : ZhouQiJun
- * @Date        : 2025-04-26 14:34:34
- * @LastEditors : ZhouQiJun
- * @LastEditTime: 2025-04-26 14:40:31
- * @Description :
- */
-module.exports = {
-  types: [
-    {
-      value: ':gift: feat',
-      name: '🎁 feat:     新功能',
-    },
-    {
-      value: ':bug: fix',
-      name: '🐛 fix:      修复bug',
-    },
-    {
-      value: ':package: build',
-      name: '📦️ build:    打包',
-    },
-    {
-      value: ':zap: perf',
-      name: '⚡️ perf:     性能优化',
-    },
-    {
-      value: ':tada: release',
-      name: '🎉 release:  发布正式版',
-    },
-    {
-      value: ':lipstick: style',
-      name: '💄 style:    代码的样式美化',
-    },
-    {
-      value: ':recycle: refactor',
-      name: '♻️  refactor: 重构',
-    },
-    {
-      value: ':books: docs',
-      name: '📚  docs:     文档变更',
-    },
-    {
-      value: ':white_check_mark: test',
-      name: '✅ test:     测试',
-    },
-    {
-      value: ':rewind: revert',
-      name: '⏪️ revert:   回退',
-    },
-    {
-      value: ':wrench: chore',
-      name: '⚙️ chore:    构建/工程依赖/工具',
-    },
-    {
-      value: ':construction_worker: ci',
-      name: '👷 ci:       CI related changes',
-    },
-  ],
-  messages: {
-    type: '请选择提交类型(必填)',
-    customScope: '请输入文档修改范围(可选)',
-    subject: '请简要描述提交(必填)',
-    body: '请输入详细描述(可选)',
-    breaking: '列出任何BREAKING CHANGES(可选)',
-    footer: '请输入要关闭的issue(可选)',
-    confirmCommit: '确定提交此说明吗？',
-  },
-  allowCustomScopes: true,
-  // 跳过问题
-  skipQuestions: ['body', 'footer'],
-  subjectLimit: 72,
-}
-```
-
-修改 commitlint.config.js
-
-移除 extends中 原来的 `@commitlint/config-conventional`，添加`git-commit-emoji`、`cz`:
-
-```ts
-module.exports = {
-  //extends: ['@commitlint/config-conventional'],
-  extends: ['git-commit-emoji', 'cz'],
-}
-```
-
-修改 `monorepo/package.json` 中提交命令：
-
-```json
-{
-  "scripts": {
-    "cz": "cz-customizable"
-  }
-}
-```
-
-验证是否可用：
-
-```bash
-pnpm cz
-```
-
-看到类似这种输出：
-
-```bash
-? 请选择提交类型(必填) (Use arrow keys)
-❯ 🎁 feat:     新功能
-  🐛 fix:      修复bug
-  📦️ build:    打包
-  ⚡️ perf:     性能优化
-  🎉 release:  发布正式版
-  💄 style:    代码的样式美化
-  ♻️  refactor: 重构
-```
-
-则表明表情提交可用了，🎁！
-
-#### 优化表情包
-
-chore 和 refactor 的表情包，只显示黑白，似乎不那么好看，替换一个有彩色，且渲染良好的。
-
-[查看各种表情 - Complete list of github markdown emoji markup](https://gist.github.com/rxaviers/7360908)
-
-[gitemoji](https://gitmoji.dev/)
-
-修改后的`.cz-config.js`:
-
-```js
-/*
- * @Author      : ZhouQiJun
- * @Date        : 2025-04-26 14:34:34
- * @LastEditors : ZhouQiJun
- * @LastEditTime: 2025-04-26 15:08:23
- * @Description :
- */
-module.exports = {
-  types: [
-    {
-      value: ':gift: feat',
-      name: '🎁 feat:     新功能',
-    },
-    {
-      value: ':bug: fix',
-      name: '🐛 fix:      修复bug',
-    },
-    {
-      value: ':recycle: refactor',
-      name: '♻️ refactor: 重构',
-    },
-    {
-      value: ':books: docs',
-      name: '📚  docs:     文档变更',
-    },
-    {
-      value: ':package: build',
-      name: '📦️ build:    打包',
-    },
-    {
-      value: ':rocket: perf',
-      name: '🚀 perf:     性能优化',
-    },
-    {
-      value: ':tada: release',
-      name: '🎉 release:  发布正式版',
-    },
-    {
-      value: ':art: style',
-      name: '🎨 style:    代码的样式美化',
-    },
-    {
-      value: ':white_check_mark: test',
-      name: '✅ test:     测试',
-    },
-    {
-      value: ':rewind: revert',
-      name: '⏪️ revert:   回退',
-    },
-    {
-      value: ':wrench: chore',
-      name: '🔧 chore:    构建/工程依赖/工具',
-    },
-    {
-      value: ':construction_worker: ci',
-      name: '👷 ci:       CI related changes',
-    },
-  ],
-  messages: {
-    type: '请选择提交类型(必填)',
-    customScope: '请输入文档修改范围(可选)',
-    subject: '请简要描述提交(必填)',
-    body: '请输入详细描述(可选)',
-    breaking: '列出任何BREAKING CHANGES(可选)',
-    footer: '请输入要关闭的issue(可选)',
-    confirmCommit: '确定提交此说明吗？',
-  },
-  allowCustomScopes: true,
-  // 跳过问题
-  skipQuestions: ['body', 'footer'],
-  subjectLimit: 72,
-}
-```
-
-> refactor 的表情渲染得不好，因为没有找到更好的，就不换了。
 
 ## 根据 git commit 生成日志记录
 

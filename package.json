@@ -68,8 +68,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-git",
-      "czConfig": "./cz.config.mjs"
+      "path": "./node_modules/cz-git"
     }
   }
 }
