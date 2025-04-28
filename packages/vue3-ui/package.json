@@ -5,6 +5,9 @@
   "type": "module",
   "main": "dist/my-ui.umd.js",
   "module": "dist/my-ui.es.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build:check": "run-p type-check \"build-only {@}\" --",
