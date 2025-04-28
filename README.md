@@ -464,11 +464,34 @@ pnpm rm cz-conventional-changelog -w # 移除刚才安装的适配器
 pnpm add cz-git -Dw
 ```
 
-修改 package.json 中的适配器：
+修改 package.json 中的适配器和命令：
 
 ```json
-{}
+{
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-git",
+      "czConfig": "./cz.config.mjs"
+    }
+  }
+}
 ```
+
+提交一个信息，检查适配器是否生效：`pnpm cz`，看到如下信息：
+
+```bash
+? 选择提交类型或者输入关键字搜索类型: Use arrow keys or type to search
+❯ feat:     🎁新增功能
+  fix:      🐛Bug修复
+  docs:     📚文档变更
+  test:     ✅添加测试或修改已有测试
+  refactor:      ♻️代码重构(不包括 bug 修复、功能新增，不改动对外 api，仅改动内部代码组织方式、变量命名等)
+  format:     🎨代码格式美化
+  revert:     ⏪️版本回退(老代码还原)
+(Move up and down to reveal more choices)
+```
+
+就说明 cz-git 配置成功了！
 
 ### husky + commitlint 检查提交信息是否符合规范
 
