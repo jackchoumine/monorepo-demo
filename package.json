@@ -16,6 +16,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "cz": "git-cz",
     "changeset": "changeset",
+    "prepv": "pnpm build",
     "pv": "changeset version",
     "pu": "changeset publish"
   },
