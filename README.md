@@ -354,47 +354,106 @@ feat(button): add rounded corners
 安装依赖：
 
 ```bash
-pnpm add -g commitizen # 全局安装
-pnpm add commitlint @commitlint/config-conventional cz-conventional-changelog -Dw
+pnpm add  commitizen -Dw
 ```
 
-| 包名                              | 作用                                                                                                        | 适用场景                                       |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| `commitizen`                      | 提供交互式命令行工具（`git cz`），帮助用户生成符合约定式提交（Conventional Commits）规范的 commit message。 | 替代 `git commit`，规范化提交消息。            |
-| `commitlint`                      | 校验 commit message 是否符合指定格式（如 Conventional Commits），不合法时阻止提交。                         | 在 Git 钩子（如 `commit-msg`）中强制规范提交。 |
-| `@commitlint/config-conventional` | `commitlint` 的**预设配置**，基于 [Conventional Commits](https://www.conventionalcommits.org/) 规范。       | 搭配 `commitlint` 使用，提供开箱即用的规则。   |
-| `cz-conventional-changelog`       | `commitizen` 的**适配器**，提供符合 Conventional Commits 的交互式提交模板。                                 | 搭配 `commitizen` 使用，生成标准化提交消息。   |
+> commitizen 是做什么的？
 
-增加`monorepo/package.json`的脚本命令：
+一个命令行交互式的 git commit 替代工具，包含一个 git-cz 的命令，通过 git-cz 可交互式的实现按照【约定式提交规范】编写 commit message 的目的。
+
+修改`monorepo/package.json`，增加 config 配置：
 
 ```json
 {
-  "scripts": {
-    "cz": "git-cz"
-  },
   "config": {
     "commitizen": {
-      "path": "cz-conventional-changelog"
+      "path": "node_modules/commitizen"
     }
   }
 }
 ```
 
-验证环境是否可用：
+config 的作用是指定适配器。
 
-先`git add .`，在 `pnpm cz` 或者 git-cz，会看到如下信息：
+验证配置是否生效：`pnpx git-cz`，看到如下的内容：
+
+```bash
+? Select the type of change that you're committing: (Use arrow keys or type to search)
+> 💍  test:       Adding missing tests
+  🎸  feat:       A new feature
+  🐛  fix:        A bug fix
+  🤖  chore:      Build process or auxiliary tool changes
+  ✏️  docs:       Documentation only changes
+  💡  refactor:   A code change that neither fixes a bug or adds a feature
+  💄  style:      Markup, white-space, formatting, missing semi-colons...
+(Move up and down to reveal more choices)
+```
+
+就说明成功了。
+
+> 执行 `npx git-cz`，可能得到如下信息：
+
+```bash
+Could not find prompter method in the provided adapter module: node_modules/commitizen
+```
+
+这是一个 bug，[How to define Commitizen adapter when using "npx git-cz"?](https://stackoverflow.com/questions/54055891/how-to-define-commitizen-adapter-when-using-npx-git-cz)
+
+修复办法：
+
+```bash
+pnpm add commitizen -g # 全局安装
+commitizen init cz-conventional-changelog --pnpm --save-dev --save-exact --force # --force 表示强制
+```
+
+commitizen 做了两件事：
+
+1. 安装 cz-conventional-changelog 为开发依赖
+2. 修改 commitizen 的适配器为`cz-conventional-changelog`
+
+package.json 变化如下：
+
+```json
+{
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
+```
+
+此时执行`git-cz`或者`npx git-cz`，控制台输出如下信息：
 
 ```bash
 cz-cli@4.3.1, cz-conventional-changelog@3.3.0
 
 ? Select the type of change that you're committing: (Use arrow keys)
-❯ feat:     A new feature
+> feat:     A new feature
   fix:      A bug fix
   docs:     Documentation only changes
-  style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+  style:    Changes that do not affect the meaning of the code (white-space,
+formatting, missing semi-colons, etc)
   refactor: A code change that neither fixes a bug nor adds a feature
   perf:     A code change that improves performance
+(Move up and down to reveal more choices)
 ```
+
+这是适配器`cz-conventional-changelog`提示信息。
+
+### 什么是 commitizen 的适配器？
+
+commitizen 内置一些了规则，不同的团队有不同的规则偏好，为了保持扩展和开发，提供了适配器来扩展。
+
+commitizen 类似 eslint，适配器类似自定义的 eslint 规则扩展。
+
+[开源社区的出色适配器](https://github.com/commitizen/cz-cli?tab=readme-ov-file#adapters)
+
+commitizen 是一个总管，负责发起提交信息生成。
+
+适配器 是实现具体规范的插件，它告诉 commitizen 应该怎么写这个信息。
+
+### husky + commitlint 检查提交信息是否符合规范
 
 提交一次不规范的 commit，验证`.husky/commit-msg` 是否可用：
 
