@@ -359,7 +359,7 @@ pnpm add  commitizen -Dw
 
 > commitizen 是做什么的？
 
-一个命令行交互式的 git commit 替代工具，包含一个 git-cz 的命令，通过 git-cz 可交互式的实现按照【约定式提交规范】编写 commit message 的目的。
+一个交互式的 git commit 命令行，包含一个 git-cz 的命令，通过 git-cz 可交互式的实现按照【约定式提交规范】编写 commit message 的目的。
 
 修改`monorepo/package.json`，增加 config 配置：
 
