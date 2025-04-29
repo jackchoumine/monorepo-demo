@@ -329,6 +329,10 @@ defineConfigWithVueTs(
 })
 ```
 
+## stylelint 的配置
+
+<!-- TODO -->
+
 ## husky + commitLint git 提交规范工作流
 
 采用[约定式提交规范](https://www.conventionalcommits.org/zh-hans/v1.0.0/#%e7%ba%a6%e5%ae%9a%e5%bc%8f%e6%8f%90%e4%ba%a4%e8%a7%84%e8%8c%83)，让代码的历史记录更加清晰，同时可根据提交历史自动生成变更日志。
