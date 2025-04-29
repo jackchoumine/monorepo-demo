@@ -713,6 +713,30 @@ pnpm -F=vue3-ui add utils --workspace
 
 <!--  TODO -->
 
+## 其他配置
+
+### vitest 和 monorepo
+
+vitest 提供了 monorepo 的相关配置，需要的时候可查看为问题。
+
+#### 参考
+
+[Vitest Monorepo Setup](https://www.thecandidstartup.org/2024/08/19/vitest-monorepo-setup.html)
+
+[vitest -- 工作空间](https://cn.vitest.dev/guide/workspace)
+
+### commitlint 中的范围优化
+
+commitlint 中的范围可根据 packages 的目录自动生成。
+
+#### 参考
+
+[element-plus/commitlint.config.mjs](https://github.com/element-plus/element-plus/blob/dev/commitlint.config.mjs)
+
+[cz-git/commitlint.config.mjs](https://github.com/Zhengqbbb/cz-git/blob/main/commitlint.config.mjs)\
+
+### ci-git 的 AI 功能如何开启？
+
 ## 参考
 
 [Conventional Changelog 生态探索](https://zhuanlan.zhihu.com/p/392303778)
